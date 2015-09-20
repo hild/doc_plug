@@ -27,7 +27,8 @@ defmodule DocPlug.Mixfile do
   defp package do
     [files: ["lib", "mix.exs", "README.md", "CHANGELOG.md", "LICENSE.md"],
      contributors: ["Daniel Hill (hild)"],
-     licenses: ["MIT"]]
+     licenses: ["MIT"],
+     links: %{"GitHub" => "https://github.com/hild/doc_plug"}]
   end
 
   # Documentation configuration.
