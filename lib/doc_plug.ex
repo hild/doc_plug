@@ -82,7 +82,7 @@ defmodule DocPlug do
 
   # Generate the documentation if needed.
   defp generate(%{generate: false}), do: :noop
-  defp generate(%{task: task, at: at}) do
+  defp generate(%{task: task}) do
     :application.ensure_started(:mix)
 
     Task.reenable(task)
