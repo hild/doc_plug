@@ -1,9 +1,12 @@
 defmodule DocPlug.Mixfile do
   use Mix.Project
 
+  # The current project version.
+  @version "1.0.1"
+
   def project do
     [app: :doc_plug,
-     version: "1.0.0",
+     version: @version,
      elixir: "~> 1.0",
      build_embedded: Mix.env == :prod,
      deps: deps,
@@ -36,6 +39,6 @@ defmodule DocPlug.Mixfile do
   defp docs do
     [main: "README",
      extras: ["README.md", "CHANGELOG.md", "LICENSE.md"],
-     source_ref: "1.0.0"]
+     source_ref: @version]
   end
 end
