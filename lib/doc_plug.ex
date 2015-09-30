@@ -56,12 +56,6 @@ defmodule DocPlug do
     opts = Enum.into(overrides, @defaults)
     static_opts = Static.init(at: opts.at, from: opts.from, gzip: false)
 
-    # Determine if task name is runnable.
-    if opts.generate and Task.get(opts.task) == nil do
-      raise GenerationError, opts.task
-    end
-
-    generate(opts)
     {opts, static_opts}
   end
 
@@ -74,9 +68,13 @@ defmodule DocPlug do
   def call(%Conn{path_info: path} = conn, {opts, static_opts}) do
     at = opts.at
     case path do
-      [^at] -> redirect(conn, at)
-      [^at | _rest] -> Static.call(conn, static_opts)
-      _ -> conn
+      [^at] ->
+        generate(opts)
+        redirect(conn, at)
+      [^at | _rest] ->
+        Static.call(conn, static_opts)
+      _ ->
+        conn
     end
   end
 
@@ -85,7 +83,11 @@ defmodule DocPlug do
   defp generate(%{task: task}) do
     :application.ensure_started(:mix)
 
-    Task.reenable(task)
+    # Determine if task name is runnable.
+    if Task.get(task) == nil do
+      raise GenerationError, task
+    end
+
     Task.run(task)
   end
 
