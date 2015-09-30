@@ -2,7 +2,7 @@ defmodule DocPlug.Mixfile do
   use Mix.Project
 
   # The current project version.
-  @version "1.0.1"
+  @version "1.0.2"
 
   def project do
     [app: :doc_plug,
