@@ -30,7 +30,7 @@ defmodule DocPlug.Mixfile do
   defp package do
     [description: "Plug to automatically generate and serve project documentation.",
      files: ["lib", "mix.exs", "README.md", "CHANGELOG.md", "LICENSE.md"],
-     contributors: ["Daniel Hill (hild)"],
+     maintainers: ["Daniel Hill (hild)"],
      licenses: ["MIT"],
      links: %{"GitHub" => "https://github.com/hild/doc_plug"}]
   end
